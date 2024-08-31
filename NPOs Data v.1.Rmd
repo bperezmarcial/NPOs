@@ -1,0 +1,47 @@
+---
+title: "NCCS Data v.1"
+output: html_notebook
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse=TRUE, prompt=TRUE,comment=NULL,message=FALSE, include=TRUE, echo=FALSE, fig.width = 9, fig.height = 4)
+```
+
+```{r packageCheck, include=FALSE}
+mypacks <- c("dplyr","readr","tidyr", "ROCR", "boot","class", "stringr","rpart")  # what packages are needed?
+packs <- installed.packages()   # find installed package list
+install.me <- mypacks[!(mypacks %in% packs[,"Package"])]  #what needs to be installed?
+if (length(install.me) >= 1) install.packages(install.me, repos = "http://cran.us.r-project.org")   # install (if needed)
+lapply(mypacks, library, character.only=TRUE)  # load all packages
+```
+
+```{r}
+install.packages("devtools")
+devtools::install_github("UrbanInstitute/nccsdata")
+library(nccsdata)
+force=TRUE
+```
+```{r}
+#>core_2005_nonprofit_pz <- nccsdata::get_data(dsname = "core",
+#                                             time = "2005",
+ #                                            scope.orgtype = "NONPROFIT",
+  #                                           scope.formtype = "PZ")
+#> Requested files have a total size of 82.6 MB. Proceed
+#>                       with download? Enter Y/N (Yes/no/cancel)
+
+
+#tibble::as_tibble(core_2005_nonprofit_pz)
+# core_2005_artnonprofits_newyork <- nccsdata::get_data(dsname = "core",
+#                                                       time = "2016",
+#                                                       scope.orgtype = "NONPROFIT",
+#                                                       scope.formtype = "PZ",
+#                                                       ntee = "ART",
+#                                                       geo.state = "NY")
+# tibble::as_tibble(core_2005_artnonprofits_newyork)
+# 
+# nccsdata::preview_sample(data = core_2005_artnonprofits_newyork,
+#                          group_by = c("NTEECC", "STATE"),
+#                          var = c("TOTREV"),
+#                          stats = c("count", "mean", "max"))
+
+ntee_preview(ntee = c("XXX"))
+```
